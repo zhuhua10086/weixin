@@ -31,6 +31,7 @@
 </template>
 
 <script>
+	import { postRequest } from '@/http/index.js'
 	export default {
 		data() {
 			return {
@@ -146,11 +147,29 @@
 		},
 		methods: {
 			btnRegister(){
-				this.$refs.myForm.validate().then(res=>{
-					console.log(res);
-				}).catch(err=>{
-					//console.log(err)
-				});
+			    this.$refs.myForm.validate().then(() => {
+			        // 表单验证通过，发送注册请求
+			        postRequest('api/mobile/eregister', this.registerModel)
+			            .then(response => {
+			                // 处理注册成功的逻辑，例如跳转页面或显示注册成功的提示信息
+			                console.log('注册成功', response);
+			                // 例如跳转到注册成功页面
+			                 uni.navigateTo({
+			                   url: '/pages/index/login'
+			                 });
+			            })
+			            .catch(error => {
+			                // 处理注册失败的逻辑，例如显示注册失败的提示信息
+			                console.error('注册失败', error);
+			                // 例如显示注册失败的提示信息
+			                this.$message.error('注册失败，请重试');
+			            });
+			    }).catch(errors => {
+			        // 表单验证未通过，errors包含了每个字段的验证错误信息
+			        console.log('表单验证未通过', errors);
+			        // 可以根据具体情况处理验证未通过的逻辑，例如显示错误提示信息
+			        this.$message.error('请填写正确的信息');
+			    });
 			},
 			btnEmailCode(){
 				

@@ -7,11 +7,12 @@
 			</view>
 			<view class="my" :style="{backgroundColor:bgColor}">
 				<view class="my-pic">
+					<image  :src="avatarUrl" style="width: 200px; height: 100px;padding-left: 0px;"></image>
 					<uni-icons type="person" size="60" color="white"></uni-icons>
 					<uni-icons class="my-pic-upload" type="cloud-upload" size="18" color="#d4e4ff" @click="btnMyPic"></uni-icons>
 				</view>
 				<view class="my-info">
-
+					<text>您好，{{ nickName }}</text>
 				</view>
 			</view>
 		</view>
@@ -22,6 +23,7 @@
 					<uni-nav-bar shadow right-icon="right" title="开启阴影" />
 					<uni-nav-bar shadow right-icon="right" title="开启阴影" />
 					<uni-nav-bar shadow right-icon="right" title="开启阴影" />
+					<button type="primary" @click="navigateToLogin">登录</button>
 				</view>
 			</view>
 
@@ -31,21 +33,33 @@
 </template>
 
 <script>
+	import useUserStore from '@/store/user'
 	export default {
 		data() {
 			return {
 				bgColor: "#2979ff",
 				fontColor: "#ffffff", //只能设置白色和黑色
-				value:9
+				value:9,
+				nickName: '',
+				avatarUrl: ''
 			}
 		},
 		onLoad() {
+			const userStore = useUserStore();
+			const { nickName, avatarUrl } = userStore.userinfo;
+			this.nickName = nickName;
+			this.avatarUrl = avatarUrl;
 			uni.setNavigationBarColor({
 				backgroundColor: this.bgColor,
 				frontColor: this.fontColor
 			})
 		},
 		methods: {
+			navigateToLogin() {
+			  uni.navigateTo({
+			    url: '/pages/index/login'
+			  });
+			},
 			btnScanCode(){
 				uni.scanCode({
 					scanType:['qrCode','barCode'],
@@ -99,7 +113,7 @@
 	.my-pic {
 		position: relative;
 		display: flex;
-		width: 200upx;
+		width: 300upx;
 		height: 200upx;
 		border: 1upx solid white;
 		justify-content: center;

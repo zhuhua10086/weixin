@@ -94,7 +94,7 @@
             "https" : false
         },
         "router" : {
-            "base" : "/zhu/"
+            "base" : "/weixin/"
         }
     }
 }

@@ -51,6 +51,14 @@
                 "enablePullDownRefresh": false
             }
             
+        },{
+            "path" : "pages/index/zj",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
         }
     ],
 	"globalStyle": {
@@ -84,6 +92,11 @@
 			"iconPath": "static/tabbar/my.png",
 			"selectedIconPath": "static/tabbar/my-active.png",
 			"text": "用户"
+		}, {
+			"pagePath": "pages/index/zj",
+			"iconPath": "static/tabbar/my.png",
+			"selectedIconPath": "static/tabbar/my-active.png",
+			"text": "zj"
 		}]
 	}
 }

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mqtt": "^5.3.4",
     "pinia-plugin-persist-uni": "^1.2.0"
   }
 }
