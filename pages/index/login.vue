@@ -56,8 +56,11 @@
 					console.log(res)
 					if(res.success){
 						const userinfo=res.data.userinfo;
-						userStore.setToken(userinfo.token)	
-						userStore.fillUser(userinfo)
+						userStore.setToken(userinfo.token);
+						userStore.fillUser(userinfo);
+						uni.switchTab({
+						    url: '/pages/my/my' 
+						});
 					}
 					
 					
